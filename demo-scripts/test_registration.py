@@ -35,7 +35,6 @@ def test_registration_form():
         print("=== Starting Registration Form Test ===\n")
 
         # --- Step 1: Fill First Name ---
-        # CORRECT ID
         print("[Step 1] Filling First Name...")
         first_name_input = driver.find_element(By.ID, "firstName")
         first_name_input.clear()
@@ -43,7 +42,6 @@ def test_registration_form():
         print("[Step 1] First Name filled successfully.\n")
 
         # --- Step 2: Fill Last Name ---
-        # CORRECT ID
         print("[Step 2] Filling Last Name...")
         last_name_input = driver.find_element(By.ID, "lastName")
         last_name_input.clear()
@@ -51,15 +49,13 @@ def test_registration_form():
         print("[Step 2] Last Name filled successfully.\n")
 
         # --- Step 3: Fill Phone Number ---
-        # WRONG ID: "phoneNumber" instead of correct "phone"
         print("[Step 3] Filling Phone Number...")
-        phone_input = driver.find_element(By.ID, "phoneNumber")
+        phone_input = driver.find_element(By.ID, "phone")
         phone_input.clear()
         phone_input.send_keys("+1234567890")
         print("[Step 3] Phone Number filled successfully.\n")
 
         # --- Step 4: Fill Email Address ---
-        # CORRECT ID
         print("[Step 4] Filling Email Address...")
         email_input = driver.find_element(By.ID, "email")
         email_input.clear()
@@ -67,9 +63,8 @@ def test_registration_form():
         print("[Step 4] Email filled successfully.\n")
 
         # --- Step 5: Click Submit Button ---
-        # WRONG SELECTOR: using name "submitBtn" instead of correct class "btn"
         print("[Step 5] Clicking Submit Button...")
-        submit_btn = driver.find_element(By.NAME, "submitBtn")
+        submit_btn = driver.find_element(By.CLASS_NAME, "btn")
         submit_btn.click()
         print("[Step 5] Submit button clicked successfully.\n")
 
@@ -77,7 +72,7 @@ def test_registration_form():
         print("[Step 6] Verifying success message...")
         time.sleep(1)
         toast = driver.find_element(By.ID, "toast")
-        assert "show" in toast.get_attribute("class"), "Toast not visible!"
+        assert "Registration successful!" in toast.text, "Toast not visible!"
         print("[Step 6] Registration successful! Toast message displayed.\n")
 
         print("=== ALL TESTS PASSED ===")
@@ -104,8 +99,7 @@ def test_form_validation():
 
         # --- Click submit without filling anything ---
         print("[Step 1] Clicking submit with empty fields...")
-        # WRONG CLASS: "submit-btn" instead of correct "btn"
-        submit_btn = driver.find_element(By.CLASS_NAME, "submit-btn")
+        submit_btn = driver.find_element(By.CLASS_NAME, "btn")
         submit_btn.click()
         time.sleep(0.5)
 
